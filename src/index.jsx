@@ -1,12 +1,12 @@
 import React from 'react'
-import { Panel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import Meta from 'pi-meta'
+// import { Meta, Panel } from 'piousbox-render'
+import { Meta, Panel } from '../../piousbox-render/src/index'
 
 class Newsitems extends React.Component {
   render () {
-    console.log('+++ Newsitems render', this.props, this.state)
+    // console.log('+++ Newsitems render', this.props, this.state)
     if (!this.props.items) { return(null) } 
     let newsitems = []
     let idx = 0
@@ -59,16 +59,16 @@ class NewsitemPhoto extends React.Component {
 
 class NewsitemVideo extends React.Component {
   render () {
-    console.log('+++ NewsitemVideo render', this.props, this.state)
-    console.log('+++ link:', Link)
+    // console.log('+++ NewsitemVideo render', this.props, this.state)
 
     let linkPath = `/en/videos/show/${this.props.item.youtube_id}` // @TODO: abstract
     return (
-      <div>
-        { /* <Link to={linkPath}><img src={`https://img.youtube.com/vi/${this.props.item.youtube_id}/0.jpg`} width="100%" alt='' /></Link>
-        <h3><Link to={linkPath}>{ this.props.item.name }</Link></h3> */ }
-        { /* <Meta item={this.props.item} /> */ }
-        <Link to="/aba">render...</Link>
+      <div className="dropShadow">
+        <div className="inner">
+          <Link to={linkPath}><img src={`https://img.youtube.com/vi/${this.props.item.youtube_id}/0.jpg`} width="100%" alt='' /></Link>
+          <h3><Link to={linkPath}>{ this.props.item.name }</Link></h3>
+          <Meta item={this.props.item} />
+        </div>
       </div>
     )
   }
@@ -76,9 +76,13 @@ class NewsitemVideo extends React.Component {
 
 class NewsitemReport extends React.Component {
   render () {
-    console.log('+++ NewsitemReport render')
+    if (!this.props.item) { return(null) }
     return (
-      <div >newsitem report</div>
+      <Panel>
+        <h2>{this.props.item.name}</h2>
+        <Meta item={this.props.item} />
+        { /* <img style={{ border: '10px solid gray', padding: '10px', width: '100%' }} src={this.props.item.photo_url} alt=''  /> */ }
+      </Panel>
     )
   }
 }
