@@ -14,9 +14,9 @@ class Newsitems extends React.Component {
       if (i.item_type === 'report') {
         newsitems.push(<div key={idx++}><NewsitemReport item={i} /></div>)
       } else if (i.item_type === 'gallery') {
-        newsitems.push(<div key={idx++}><NewsitemGallery item={i} /></div>)
+        // newsitems.push(<div key={idx++}><NewsitemGallery item={i} /></div>)
       } else if (i.item_type === 'video') {
-        newsitems.push(<div key={idx++}><NewsitemVideo item={i} /></div>)
+        // newsitems.push(<div key={idx++}><NewsitemVideo item={i} /></div>)
       } else if (i.item_type === 'photo') {
         // newsitems.push(<div key={idx++}><NewsitemPhoto item={i} /></div>)
       }
@@ -76,7 +76,11 @@ class NewsitemVideo extends React.Component {
 
 class NewsitemReport extends React.Component {
   render () {
+    console.log('+++ NewsitemReport:', this.props, this.state)
+    console.log('+++ panel:', Panel)
+
     if (!this.props.item) { return(null) }
+
     return (
       <Panel>
         <h2>{this.props.item.name}</h2>
